@@ -7,10 +7,12 @@
 
 namespace QuickBook\Client;
 
+use GuzzleHttp\Psr7\Response as GuzzleResponse;
+
 class HTTPResponse
 {
     /**
-     * @var null
+     * @var HTTPRequest
      */
     private $response = null;
     /**
@@ -25,9 +27,9 @@ class HTTPResponse
     /**
      * HTTPResponse constructor.
      *
-     * @param $response
+     * @param GuzzleResponse $response
      */
-    public function __construct($response)
+    public function __construct(GuzzleResponse $response)
     {
         $this->response = $response;
     }
@@ -65,7 +67,7 @@ class HTTPResponse
     }
 
     /**
-     * @return null
+     * @return GuzzleResponse
      */
     private function getResponse()
     {

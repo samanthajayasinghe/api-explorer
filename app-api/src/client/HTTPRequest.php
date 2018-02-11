@@ -9,6 +9,7 @@ namespace QuickBook\Client;
 
 class HTTPRequest
 {
+
     /**
      * @var string EndPoint
      */
@@ -29,6 +30,7 @@ class HTTPRequest
 
     /**
      * HTTPRequest constructor.
+     *
      * @param null $endPoint
      * @param null $params
      */
@@ -48,11 +50,13 @@ class HTTPRequest
 
     /**
      * @param $endPoint
+     *
      * @return $this
      */
     private function setEndPoint($endPoint)
     {
         $this->endPoint = $endPoint;
+
         return $this;
     }
 
@@ -66,11 +70,13 @@ class HTTPRequest
 
     /**
      * @param $params
+     *
      * @return $this
      */
     private function setParams($params)
     {
         $this->params = $params;
+
         return $this;
     }
 
