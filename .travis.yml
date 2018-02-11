@@ -14,8 +14,10 @@ before_install:
 install:
   - composer install -d app-api
   - composer dump-autoload -o -d app-api
+before_script:
+  - cd app-api
 script:
-  - app-api/vendor/bin/phpunit
+  - vendor/bin/phpunit
 
 notifications:
-  email: true
+  email: false
