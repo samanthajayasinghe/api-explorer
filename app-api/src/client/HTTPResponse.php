@@ -29,7 +29,7 @@ class HTTPResponse
      *
      * @param GuzzleResponse $response
      */
-    public function __construct(GuzzleResponse $response)
+    public function __construct($response)
     {
         $this->response = $response;
     }

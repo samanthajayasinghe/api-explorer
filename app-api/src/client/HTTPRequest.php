@@ -22,11 +22,16 @@ class HTTPRequest
     /**
      * @var string
      */
-    private $apiVersion = 'v1';
+    private $apiVersion = '';
     /**
      * @var string
      */
     private $basePath = '';
+
+    /**
+     * @var string
+     */
+    private $token = '';
 
     /**
      * HTTPRequest constructor.
@@ -110,5 +115,34 @@ class HTTPRequest
     public function setBasePath($basePath)
     {
         $this->basePath = $basePath;
+    }
+
+    /**
+     * @return string
+     */
+    public function getToken()
+    {
+        return $this->token;
+    }
+
+    /**
+     * @param string $token
+     */
+    public function setToken($token)
+    {
+        $this->token = $token;
+    }
+
+    /**
+     * @return string
+     */
+    public function getFormatEndPoint()
+    {
+        $path = $this->getBasePath();
+        if (!empty($this->getApiVersion())) {
+            $path .= $this->getApiVersion() . '/';
+        }
+
+        return $path . $this->getEndPoint();
     }
 }
