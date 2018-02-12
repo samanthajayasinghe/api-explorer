@@ -8,7 +8,7 @@
 namespace Tests\Client;
 
 use \PHPUnit_Framework_TestCase;
-use \QuickBook\Client\HTTPResponse;
+use \APIExplorer\Client\HTTPResponse;
 use GuzzleHttp\Psr7;
 use GuzzleHttp\Psr7\Response;
 

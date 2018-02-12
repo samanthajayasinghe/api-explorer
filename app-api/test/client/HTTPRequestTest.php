@@ -8,7 +8,7 @@
 namespace Tests\Client;
 
 use \PHPUnit_Framework_TestCase;
-use \QuickBook\Client\HTTPRequest;
+use \APIExplorer\Client\HTTPRequest;
 
 class HTTPRequestTest extends PHPUnit_Framework_TestCase
 {

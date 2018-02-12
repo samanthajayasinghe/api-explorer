@@ -5,7 +5,7 @@
  * Http Client interface
  */
 
-namespace QuickBook\Client;
+namespace APIExplorer\Client;
 
 interface IClient
 {

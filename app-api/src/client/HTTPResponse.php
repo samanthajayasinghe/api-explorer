@@ -5,7 +5,7 @@
  * Http Request
  */
 
-namespace QuickBook\Client;
+namespace APIExplorer\Client;
 
 use GuzzleHttp\Psr7\Response as GuzzleResponse;
 

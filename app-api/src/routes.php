@@ -6,6 +6,8 @@
 
 use Slim\Http\Request;
 use Slim\Http\Response;
+use APIExplorer\Client\HTTPRequest;
+
 // Routes
 $app->get('/', function (Request $request, Response $response, array $args) {
     // Render index view
@@ -23,5 +25,15 @@ $app->get('/callback', function (Request $request, Response $response) use ($app
         'code' => $_GET['code']
     ]);
 
-    print($token->getToken());
+    return $response->withHeader('Location', 'http://cl-tech.local/app-web/?companyId='.$_GET['realmId'].'&token='.$token->getToken());
+});
+
+$app->post('/read', function($request, $response){
+    $token = $request->getParam('token');
+    $companyId = $request->getParam('companyId');
+    $httpRequest = new HTTPRequest('company/'.$companyId.'/query?query=Select * From Account', []);
+    $httpRequest->setApiVersion('v3');
+    $httpRequest->setToken($token);
+    $httpResponse = $this->get('httpClient')->get($httpRequest);
+    return $response->withJson($httpResponse->getResult());
 });
