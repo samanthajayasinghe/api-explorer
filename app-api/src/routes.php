@@ -28,6 +28,11 @@ $app->get('/callback', function (Request $request, Response $response) use ($app
     return $response->withHeader('Location', 'http://cl-tech.local/app-web/?companyId='.$_GET['realmId'].'&token='.$token->getToken());
 });
 
+$app->get('/endpoints', function (Request $request, Response $response){
+
+    return $response->withJson($this->get('endpointService')->getEndPoints());
+});
+
 $app->post('/read', function($request, $response){
     $token = $request->getParam('token');
     $companyId = $request->getParam('companyId');
