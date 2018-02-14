@@ -110,7 +110,12 @@ class Adapter implements IAdapter
             $params[':'.$data['name']] = $data['value'];
         }
         $formatEndPoint = strtr($request->getEndPoint(), $params);
+        $formatEndPoint = $this->setMinorVersion($formatEndPoint);
         $request->setEndPoint($formatEndPoint);
         return $request;
+    }
+
+    private function setMinorVersion($endPoint){
+        return $endPoint.'?minorversion=4';
     }
 }

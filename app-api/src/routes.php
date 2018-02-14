@@ -43,5 +43,5 @@ $app->post('/read', function ($request, $response) {
     $httpRequest->setToken($request->getParam('token'));
     $httpResponse = $this->get('apiService')->executeHTTPRequest($httpRequest, 'get');
 
-    return $response->withJson($httpResponse->getResult());
+    return $response->withJson($httpResponse->toString());
 });

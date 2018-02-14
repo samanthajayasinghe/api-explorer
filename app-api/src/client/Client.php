@@ -81,6 +81,7 @@ class Client implements IClient
      */
     public function get(HTTPRequest $request)
     {
+        try{
             $request->setBasePath($this->getDomain());
             $data = [
                 'headers' => [
@@ -88,11 +89,16 @@ class Client implements IClient
                     'Authorization' => 'Bearer ' .$request->getToken()
                 ]
             ];
+
             $response = $this->getHttpClient()
                 ->get($request->getFormatEndPoint(), $data);
             $httpResponse = new HTTPResponse($response);
 
             return $httpResponse;
+        }catch(\Exception $e){
+            return new HTTPResponse($e->getResponse());
+        }
+
 
     }
 

@@ -111,4 +111,25 @@ class HTTPResponse
             return $result['error']['text'];
         }
     }
+
+    public function getFormatHeader(){
+        $data = array();
+        foreach ($this->getResponse()->getHeaders() as $name => $values) {
+            $data[$name] = implode(', ', $values);
+        }
+        return $data;
+    }
+
+    public function toString(){
+        $data = array();
+        if(!$this->hasError()){
+            $data['body'] = $this->getResult();
+        }else{
+            $data['body'] = $this->getError();
+        }
+        $data['statusCode'] = $this->getStatusCode();
+        $data['header'] = $this->getFormatHeader();
+        return $data;
+    }
+
 }

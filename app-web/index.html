@@ -11,6 +11,7 @@
 
     <!-- Bootstrap core CSS -->
     <link href="dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="dist/css/app.css" rel="stylesheet">
 
 </head>
 
@@ -56,11 +57,30 @@
                                 <span id="request-end-point">/company/:companyId/account/:entityId</span></li>
                         </ol>
                     </nav>
-                    <form id="api-request-box-form">
+                    <form id="api-request-box-form" >
                         <div id="api-request-box-input">
                         </div>
                         <button type="button" class="btn btn-primary" id="button-request-api" data-end-point="">Try It</button>
                     </form>
+
+                </div>
+            </div>
+
+            <div class="card" id="api-response-box" style="margin-top: 20px;display: none">
+                <div class="card-body">
+                    <h5 class="card-title">API Response</h5>
+                    <a href="#" class="badge badge-primary" >Request Body</a>
+                    <div class="card-block" id="response-body">
+                        <pre class="prettyprint lang-js">
+
+                       </pre>
+                    </div>
+                    <a href="#" class="badge badge-info"  >Header</a>
+                    <div class="card-block" id="response-header">
+                        <pre class="prettyprint lang-js">
+
+                       </pre>
+                    </div>
 
                 </div>
             </div>
@@ -79,5 +99,8 @@
         crossorigin="anonymous"></script>
 <script src="dist/js/bootstrap.min.js"></script>
 <script src="js/app.js"></script>
+<script src="https://cdn.rawgit.com/google/code-prettify/master/loader/run_prettify.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.17.0/jquery.validate.js"></script>
+
 </body>
 </html>

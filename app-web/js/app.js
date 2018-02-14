@@ -22,14 +22,20 @@ var App = function () {
     },
 
     this.requestApiData = function(endpoint){
-        $.ajax({
+        var form = $('#api-request-box-form');
+        form.validate();
+        if(form.valid()){
+            $.ajax({
                 type: 'POST',
                 url: appHost+"/read",
                 data: {'token':localStorage.getItem('token'), 'endpoint': endpoint, 'form-data':$('#api-request-box-form').serializeArray()},
                 success: function(result){
-                    console.log(result);
+                    $('#api-response-box').show();
+                    $('#response-body > pre').html(JSON.stringify(result.body, null, 2));
+                    $('#response-header > pre').html(JSON.stringify(result.header, null, 2));
                 }
-         });
+            });
+        }
     },
 
     this.getEndpoints = function(){
@@ -62,11 +68,12 @@ var App = function () {
             $('#api-request-box-input').append(
                 '<div class="form-group">'+
                     '<label>'+param+'</label>'+
-                    '<input name="'+param+'" class="form-control"  placeholder="Enter '+param+'" value="'+value+'">'+
+                    '<input name="'+param+'" class="form-control"  placeholder="Enter '+param+'" value="'+value+'" required>'+
                 '</div>'
             );
         });
         $('#button-request-api').attr('data-end-point',endpoint);
+        $('#api-response-box').hide();
     }
 }
 

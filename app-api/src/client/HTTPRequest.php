@@ -140,7 +140,7 @@ class HTTPRequest
     {
         $path = $this->getBasePath();
         if (!empty($this->getApiVersion())) {
-            $path .= $this->getApiVersion() . '/';
+            $path .= $this->getApiVersion() ;
         }
 
         return $path . $this->getEndPoint();
