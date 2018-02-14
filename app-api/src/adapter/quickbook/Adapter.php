@@ -78,9 +78,10 @@ class Adapter implements IAdapter
      *
      * @return HTTPResponse
      */
-    public function executeHTTPRequest(HTTPRequest $request, $httpMethod ='get')
+    public function executeHTTPRequest(HTTPRequest $request, $httpMethod = 'get')
     {
         $formatRequest = $this->formatHTTPRequest($request);
+
         return $this->getHttpClient()->$httpMethod($formatRequest);
     }
 
@@ -103,19 +104,21 @@ class Adapter implements IAdapter
         return $this->getAuthProvider()->getAccessToken($type, $params);
     }
 
-    public function formatHTTPRequest(HTTPRequest $request) {
+    /**
+     * @param HTTPRequest $request
+     *
+     * @return HTTPRequest
+     */
+    public function formatHTTPRequest(HTTPRequest $request)
+    {
         $request->setApiVersion(self::DEFAULT_API_VERSION);
         $params = array();
-        foreach($request->getParams() as $data) {
-            $params[':'.$data['name']] = $data['value'];
+        foreach ($request->getParams() as $data) {
+            $params[':' . $data['name']] = $data['value'];
         }
         $formatEndPoint = strtr($request->getEndPoint(), $params);
-        $formatEndPoint = $this->setMinorVersion($formatEndPoint);
         $request->setEndPoint($formatEndPoint);
-        return $request;
-    }
 
-    private function setMinorVersion($endPoint){
-        return $endPoint.'?minorversion=4';
+        return $request;
     }
 }

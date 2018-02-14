@@ -10,8 +10,7 @@ use APIExplorer\Client\HTTPRequest;
 
 // Routes
 $app->get('/', function (Request $request, Response $response, array $args) {
-    // Render index view
-    print('test sample app');
+    print('API Explorer APP');
 });
 $app->get('/connect', function (Request $request, Response $response) use ($app) {
 
@@ -43,5 +42,5 @@ $app->post('/read', function ($request, $response) {
     $httpRequest->setToken($request->getParam('token'));
     $httpResponse = $this->get('apiService')->executeHTTPRequest($httpRequest, 'get');
 
-    return $response->withJson($httpResponse->toString());
+    return $response->withJson($httpResponse->toArray());
 });

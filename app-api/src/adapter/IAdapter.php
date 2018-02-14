@@ -7,6 +7,7 @@
  */
 
 namespace APIExplorer\Adapter;
+
 use APIExplorer\Client\HTTPRequest;
 use APIExplorer\Client\HTTPResponse;
 
@@ -24,7 +25,7 @@ interface IAdapter
      *
      * @return HTTPResponse
      */
-    public function executeHTTPRequest(HTTPRequest $request, $httpMethod ='get');
+    public function executeHTTPRequest(HTTPRequest $request, $httpMethod = 'get');
 
     /**
      * @param $type
@@ -32,5 +33,5 @@ interface IAdapter
      *
      * @return mixed
      */
-    public function getAccessToken($type, $params=array());
+    public function getAccessToken($type, $params = array());
 }

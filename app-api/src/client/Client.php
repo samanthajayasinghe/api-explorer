@@ -2,7 +2,7 @@
 /**
  * @author Samantha Jayasinghe
  *
- * Http Client interface
+ * Http Client
  */
 
 namespace APIExplorer\Client;
@@ -30,7 +30,7 @@ class Client implements IClient
     public function __construct($domain)
     {
         $this->setDomain($domain)
-            ->setHttpClient(new HttpClient(['base_uri' => $this->getDomain(), 'Content-Type' => 'application/json']));
+             ->setHttpClient(new HttpClient(['base_uri' => $this->getDomain(), 'Content-Type' => 'application/json']));
     }
 
     /**
@@ -98,8 +98,6 @@ class Client implements IClient
         }catch(\Exception $e){
             return new HTTPResponse($e->getResponse());
         }
-
-
     }
 
     public function post(HTTPRequest $request)

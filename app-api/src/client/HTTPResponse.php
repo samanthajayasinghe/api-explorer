@@ -2,7 +2,7 @@
 /**
  * @author Samantha Jayasinghe
  *
- * Http Request
+ * Http Response
  */
 
 namespace APIExplorer\Client;
@@ -112,6 +112,10 @@ class HTTPResponse
         }
     }
 
+    /**
+     * Format headers
+     * @return array
+     */
     public function getFormatHeader(){
         $data = array();
         foreach ($this->getResponse()->getHeaders() as $name => $values) {
@@ -120,7 +124,11 @@ class HTTPResponse
         return $data;
     }
 
-    public function toString(){
+    /**
+     * Covert response to array
+     * @return array
+     */
+    public function toArray(){
         $data = array();
         if(!$this->hasError()){
             $data['body'] = $this->getResult();
