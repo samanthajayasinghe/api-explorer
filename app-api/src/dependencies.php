@@ -12,13 +12,14 @@ use APIExplorer\Adapter\QuickBook\Adapter;
 // DIC configuration
 $container = $app->getContainer();
 
+$httpClient = new Client('https://sandbox-quickbooks.api.intuit.com/');
+
 $quickBookApiAdapter = new Adapter();
 $quickBookApiAdapter->setConfig($config);
+$quickBookApiAdapter->setHttpClient($httpClient);
 
 $apiService = new APIService();
 $apiService->setApiAdapter($quickBookApiAdapter);
-
-$container['httpClient'] = new Client('https://sandbox-quickbooks.api.intuit.com/');
 
 $container['apiService']  =  $apiService;
 

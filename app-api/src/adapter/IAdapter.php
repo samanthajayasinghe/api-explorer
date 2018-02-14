@@ -7,6 +7,8 @@
  */
 
 namespace APIExplorer\Adapter;
+use APIExplorer\Client\HTTPRequest;
+use APIExplorer\Client\HTTPResponse;
 
 interface IAdapter
 {
@@ -17,9 +19,12 @@ interface IAdapter
     public function getAuthorizationUrl();
 
     /**
-     * @return Execute end point
+     * @param HTTPRequest $request
+     * @param string      $httpMethod
+     *
+     * @return HTTPResponse
      */
-    public function executeEndPoint();
+    public function executeHTTPRequest(HTTPRequest $request, $httpMethod ='get');
 
     /**
      * @param $type

@@ -58,7 +58,7 @@ class HTTPRequest
      *
      * @return $this
      */
-    private function setEndPoint($endPoint)
+    public function setEndPoint($endPoint)
     {
         $this->endPoint = $endPoint;
 

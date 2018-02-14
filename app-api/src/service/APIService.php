@@ -36,9 +36,12 @@ class APIService
 
     /**
      * @param HTTPRequest $request
+     * @param string      $httpMethod
+     *
+     * @return \APIExplorer\Client\HTTPResponse
      */
-    public function executeEndPoint(HTTPRequest $request){
-
+    public function executeHTTPRequest(HTTPRequest $request, $httpMethod ='get'){
+        return $this->getApiAdapter()->executeHTTPRequest($request, $httpMethod);
     }
 
 }

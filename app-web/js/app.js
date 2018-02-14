@@ -25,7 +25,7 @@ var App = function () {
         $.ajax({
                 type: 'POST',
                 url: appHost+"/read",
-                data: {'token':localStorage.getItem('token'), 'endpoint': endpoint, 'form-data':$('#api-request-box-form').serialize()},
+                data: {'token':localStorage.getItem('token'), 'endpoint': endpoint, 'form-data':$('#api-request-box-form').serializeArray()},
                 success: function(result){
                     console.log(result);
                 }
