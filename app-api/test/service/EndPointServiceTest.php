@@ -3,7 +3,7 @@
 /**
  * @author Samantha Jayasinghe
  *
- * Http Request Test
+ * End Point Service Test
  */
 
 namespace Tests\Service;

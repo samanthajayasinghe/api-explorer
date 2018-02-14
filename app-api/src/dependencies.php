@@ -5,23 +5,22 @@
  */
 
 use APIExplorer\Client\Client;
-use \League\OAuth2\Client\Provider\GenericProvider;
 use APIExplorer\Service\EndPointService;
+use APIExplorer\Service\APIService;
+use APIExplorer\Adapter\QuickBook\Adapter;
 
 // DIC configuration
 $container = $app->getContainer();
 
-$container['oauthProvider'] = new GenericProvider([
-    'clientId' => $config->clientId,
-    'clientSecret' => $config->clientSecret,
-    'redirectUri' => $config->redirectUri,
-    'urlAuthorize' => $config->urlAuthorize,
-    'urlAccessToken' => $config->urlAccessToken,
-    'urlResourceOwnerDetails' => null,
-    'scopes' => $config->scopes
-]);
+$quickBookApiAdapter = new Adapter();
+$quickBookApiAdapter->setConfig($config);
+
+$apiService = new APIService();
+$apiService->setApiAdapter($quickBookApiAdapter);
 
 $container['httpClient'] = new Client('https://sandbox-quickbooks.api.intuit.com/');
+
+$container['apiService']  =  $apiService;
 
 $container['endpointService'] = new EndPointService();
 

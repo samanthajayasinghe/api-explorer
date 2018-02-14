@@ -3,7 +3,7 @@
 /**
  * @author Samantha Jayasinghe
  *
- * Http Client interface
+ * End Point Service
  */
 
 namespace APIExplorer\Service;

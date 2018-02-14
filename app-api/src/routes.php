@@ -15,13 +15,13 @@ $app->get('/', function (Request $request, Response $response, array $args) {
 });
 $app->get('/connect', function (Request $request, Response $response) use ($app){
 
-    $authorizationUrl = $this->get('oauthProvider')->getAuthorizationUrl();
+    $authorizationUrl = $this->get('apiService')->getApiAdapter()->getAuthorizationUrl();
     return $response->withHeader('Location', $authorizationUrl);
 });
 
 $app->get('/callback', function (Request $request, Response $response) use ($app){
 
-    $token = $this->get('oauthProvider')->getAccessToken('authorization_code', [
+    $token = $this->get('apiService')->getApiAdapter()->getAccessToken('authorization_code', [
         'code' => $_GET['code']
     ]);
 
