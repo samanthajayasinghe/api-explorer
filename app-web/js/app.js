@@ -12,25 +12,25 @@ var App = function () {
         if (typeof(companyId) != 'undefined') {
             localStorage.setItem('companyId', companyId);
         }
-    }
+    },
 
     this.getUrlParam = function (name) {
         var results = new RegExp('[\?&]'+name+'=([^&#]*)').exec(window.location.href);
         if (results !== null) {
             return results[1];
         }
-    }
+    },
 
-    this.callRead = function(){
+    this.requestApiData = function(endpoint){
         $.ajax({
                 type: 'POST',
                 url: appHost+"/read",
-                data: {'token':localStorage.getItem('token'), 'companyId': localStorage.getItem('companyId')},
+                data: {'token':localStorage.getItem('token'), 'endpoint': endpoint, 'form-data':$('#api-request-box-form').serialize()},
                 success: function(result){
                     console.log(result);
                 }
          });
-    }
+    },
 
     this.getEndpoints = function(){
         $.ajax({
@@ -38,15 +38,35 @@ var App = function () {
             success: function(result){
                 $.each(result, function(i, item) {
                     $('#side-navigation').append(
-                        '<li class="nav-item" data-endpoint="'+item.endpoint+'">'+
-                        '<a class="nav-link active" href="#">'+
-                        item.name+
+                        '<li class="nav-item" data-endpoint="'+item.endpoint+'" data-id="'+item.id+'" data-params="'+item.params+'" id="menu-item-'+item.id+'">'+
+                        '<a class="nav-link active" href="javascript:app.showAPIForm('+item.id+')">'
+                        +item.name+
                         '</a>'+
                         '</li>');
                 });
-
+                self.showAPIForm(1);
             }
         });
+    },
+
+    this.showAPIForm = function(id) {
+        var item = $('#menu-item-'+id);
+        var endpoint = item.data('endpoint');
+        $('#request-end-point').html(endpoint);
+        $('#api-request-box-input').html('');
+        $.each(item.data('params').split(','), function(i, param) {
+            var value = '';
+            if(param == 'companyId'){
+                value = localStorage.getItem('companyId');
+            }
+            $('#api-request-box-input').append(
+                '<div class="form-group">'+
+                    '<label>'+param+'</label>'+
+                    '<input name="'+param+'" class="form-control"  placeholder="Enter '+param+'" value="'+value+'">'+
+                '</div>'
+            );
+        });
+        $('#button-request-api').attr('data-end-point',endpoint);
     }
 }
 
@@ -55,7 +75,7 @@ var app = new App();
 $(document).ready(function () {
     app.saveInfo();
     app.getEndpoints();
-    $("#sample-api").click(function(){
-        app.callRead();
+    $("#button-request-api").click(function(){
+        app.requestApiData($(this).attr('data-end-point'));
     });
 });

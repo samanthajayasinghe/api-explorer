@@ -43,15 +43,27 @@
                         <a href="../app-api/public/index.php/connect">
                             <button class="btn btn-sm btn-outline-secondary">Connect</button>
                         </a>
-
-                            <button class="btn btn-sm btn-outline-secondary" id="sample-api">Call Api</button>
-
                     </div>
                 </div>
             </div>
 
+            <div class="card" id="api-request-box">
+                <div class="card-body">
+                    <h5 class="card-title">Account</h5>
+                    <nav aria-label="breadcrumb">
+                        <ol class="breadcrumb">
+                            <li class="breadcrumb-item active" aria-current="page"><span class="badge badge-secondary">Endpoint</span>
+                                <span id="request-end-point">/company/:companyId/account/:entityId</span></li>
+                        </ol>
+                    </nav>
+                    <form id="api-request-box-form">
+                        <div id="api-request-box-input">
+                        </div>
+                        <button type="button" class="btn btn-primary" id="button-request-api" data-end-point="">Try It</button>
+                    </form>
 
-            <h2>Section title</h2>
+                </div>
+            </div>
 
     </div>
     </main>
