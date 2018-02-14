@@ -1,6 +1,4 @@
 .idea
-app-v1/README.md
-app-v1/vendor
-app-v1/composer.lock
+app-v1/
 app-api/vendor
 app-api/composer.lock
