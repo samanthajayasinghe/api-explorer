@@ -8,6 +8,7 @@
 namespace APIExplorer\Client;
 
 use GuzzleHttp\Client as HttpClient;
+use Prophecy\Exception\Exception;
 
 class Client implements IClient
 {
@@ -104,16 +105,16 @@ class Client implements IClient
 
     public function post(HTTPRequest $request)
     {
-        // TODO: Implement post() method.
+        throw new \Exception("method not implemented");
     }
 
     public function put(HTTPRequest $request)
     {
-        // TODO: Implement put() method.
+        throw new \Exception("method not implemented");
     }
 
     public function delete(HTTPRequest $request)
     {
-        // TODO: Implement delete() method.
+        throw new \Exception("method not implemented");
     }
 }
