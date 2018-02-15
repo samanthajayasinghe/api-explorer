@@ -43,16 +43,6 @@ class HTTPResponse
     }
 
     /**
-     * @param null $statusCode
-     * @return $this;
-     */
-    public function setStatusCode($statusCode)
-    {
-        $this->statusCode = $statusCode;
-        return $this;
-    }
-
-    /**
      * @return array
      */
     public function getResult()
@@ -72,18 +62,6 @@ class HTTPResponse
     private function getResponse()
     {
         return $this->response;
-    }
-
-    /**
-     * Extract Token
-     * @return mixed
-     */
-    public function getToken()
-    {
-        $result = $this->getResult();
-        if (isset($result['access_token'])) {
-            return $result['access_token'];
-        }
     }
 
     /**
