@@ -3,6 +3,7 @@
 namespace Tests\Adapter\QuickBook;
 
 use APIExplorer\Adapter\QuickBook\Adapter;
+use APIExplorer\Client\Client;
 use \PHPUnit_Framework_TestCase;
 use APIExplorer\Client\HTTPRequest;
 use GuzzleHttp\Psr7;
@@ -32,6 +33,11 @@ class QuickBookAdapterTest extends PHPUnit_Framework_TestCase
         $this->assertEquals('/company/123456/entity/1', $formatHttpRequest->getEndPoint());
     }
 
+    public function testGetHttpClient() {
+        $this->quickBookAdapter->setHttpClient(new Client('https://httpbin.org/'));
+        $this->assertInstanceOf('APIExplorer\Client\Client', $this->quickBookAdapter->getHttpClient());
+    }
+
     public function testGetAuthProvider()
     {
         $authUrl = $this->quickBookAdapter->getAuthorizationUrl();
@@ -52,6 +58,12 @@ class QuickBookAdapterTest extends PHPUnit_Framework_TestCase
         $this->assertEquals(200, $result->getStatusCode());
     }
 
+    public function testExecuteHTTPRequestForInvalidHost()
+    {
+        $this->quickBookAdapter->setHttpClient(new Client('https://httpbin.org/'));
+        $result = $this->quickBookAdapter->executeHTTPRequest(new HTTPRequest('get',[]));
+        $this->assertEquals(404, $result->getStatusCode());
+    }
     public function testGetAccessToken()
     {
         $adapterStub = $this->getMockBuilder('APIExplorer\Adapter\QuickBook\Adapter')

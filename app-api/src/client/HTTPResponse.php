@@ -87,32 +87,6 @@ class HTTPResponse
     }
 
     /**
-     * @return bool
-     */
-    public function hasError()
-    {
-        if ($this->getStatusCode() != 200) {
-            return true;
-        } else {
-            $result = $this->getResult();
-            if (isset($result['error'])) {
-                return true;
-            }
-        }
-    }
-
-    /**
-     * @return array
-     */
-    public function getError()
-    {
-        $result = $this->getResult();
-        if (isset($result['error'])) {
-            return $result['error']['text'];
-        }
-    }
-
-    /**
      * Format headers
      * @return array
      */
