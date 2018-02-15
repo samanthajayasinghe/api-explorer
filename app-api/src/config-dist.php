@@ -6,9 +6,12 @@
 
 $config = new stdClass();
 
-$config->clientId = 'Q0b8xrCz7fqmieyDzVBoTn3aloTMzfjn8K9ixLG9ZitmV7Z7LP';
-$config->clientSecret = 'urP4N4ZOgSClOq862FYkiybmf1UrgcCDoINcf7Hl';
-$config->redirectUri = 'http://cl-tech.local/app-api/public/index.php/callback';
+$config->appAPIHost = '{http://your app api path}'; //point to app-api/public/index.php
+$config->appWebHost = '{http://your app web path}'; //point to app-web/index.html
+
+$config->clientId = '';//Your Id here
+$config->clientSecret = '';//Your client Secret here
+$config->redirectUri = $config->appAPIHost.'/callback'; //frontend web path here
 $config->urlAuthorize = 'https://appcenter.intuit.com/connect/oauth2';
 $config->urlAccessToken = 'https://oauth.platform.intuit.com/oauth2/v1/tokens/bearer';
 $config->scopes = ['com.intuit.quickbooks.accounting'] ;

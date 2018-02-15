@@ -24,9 +24,8 @@ $app->get('/callback', function (Request $request, Response $response) use ($app
     $token = $this->get('apiService')->getApiAdapter()->getAccessToken('authorization_code', [
         'code' => $_GET['code'],
     ]);
-
-    return $response->withHeader('Location',
-        'http://cl-tech.local/app-web/?companyId=' . $_GET['realmId'] . '&token=' . $token->getToken());
+    $webPath = $this->get('apiService')->getApiAdapter()->getConfig()->appWebHost;
+    return $response->withHeader('Location', $webPath.'/?companyId=' . $_GET['realmId'] . '&token=' . $token->getToken());
 });
 
 $app->get('/endpoints', function (Request $request, Response $response) {
