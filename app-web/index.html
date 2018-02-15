@@ -42,9 +42,7 @@
                 <h1 class="h2">Dashboard</h1>
                 <div class="btn-toolbar mb-2 mb-md-0">
                     <div class="btn-group mr-2">
-                        <a href="../app-api/public/index.php/connect">
-                            <button class="btn btn-sm btn-outline-secondary">Connect</button>
-                        </a>
+                        <button class="btn btn-sm btn-outline-secondary" id="app-connect">Connect</button>
                     </div>
                 </div>
             </div>
@@ -70,13 +68,19 @@
             <div class="card" id="api-response-box" style="margin-top: 20px;display: none">
                 <div class="card-body">
                     <h5 class="card-title">API Response</h5>
-                    <a href="#" class="badge badge-primary" >Request Body</a>
+                    <a href="#" class="badge badge-primary" id="response-statuscode"></a> <a href="#" class="badge badge-info" >Request Endpoint</a>
+                    <div class="card-block" id="response-endpoint">
+                        <pre class="prettyprint lang-js">
+
+                       </pre>
+                    </div>
+                    <a href="#" class="badge badge-info" >Response Body</a>
                     <div class="card-block" id="response-body">
                         <pre class="prettyprint lang-js">
 
                        </pre>
                     </div>
-                    <a href="#" class="badge badge-info"  >Header</a>
+                    <a href="#" class="badge badge-info" >Header</a>
                     <div class="card-block" id="response-header">
                         <pre class="prettyprint lang-js">
 

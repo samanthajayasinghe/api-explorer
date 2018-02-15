@@ -25,6 +25,11 @@ class HTTPResponse
     private $result = array();
 
     /**
+     * @var string
+     */
+    private $endPoint = '';
+
+    /**
      * HTTPResponse constructor.
      *
      * @param GuzzleResponse $response
@@ -32,6 +37,7 @@ class HTTPResponse
     public function __construct($response)
     {
         $this->response = $response;
+        $this->statusCode = $response->getStatusCode();
     }
 
     /**
@@ -40,6 +46,22 @@ class HTTPResponse
     public function getStatusCode()
     {
         return $this->statusCode;
+    }
+
+    /**
+     * @return string
+     */
+    public function getEndPoint()
+    {
+        return $this->endPoint;
+    }
+
+    /**
+     * @param string $endPoint
+     */
+    public function setEndPoint($endPoint)
+    {
+        $this->endPoint = $endPoint;
     }
 
     /**
@@ -108,13 +130,10 @@ class HTTPResponse
      */
     public function toArray(){
         $data = array();
-        if(!$this->hasError()){
-            $data['body'] = $this->getResult();
-        }else{
-            $data['body'] = $this->getError();
-        }
+        $data['body'] = $this->getResult();
         $data['statusCode'] = $this->getStatusCode();
         $data['header'] = $this->getFormatHeader();
+        $data['endpont'] = $this->getEndPoint();
         return $data;
     }
 

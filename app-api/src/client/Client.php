@@ -89,14 +89,16 @@ class Client implements IClient
                     'Authorization' => 'Bearer ' .$request->getToken()
                 ]
             ];
-
+            $endPoint = $request->getFormatEndPoint();
             $response = $this->getHttpClient()
-                ->get($request->getFormatEndPoint(), $data);
+                ->get($endPoint, $data);
             $httpResponse = new HTTPResponse($response);
-
+            $httpResponse->setEndPoint($endPoint);
             return $httpResponse;
         }catch(\Exception $e){
-            return new HTTPResponse($e->getResponse());
+            $httpResponse = new HTTPResponse($e->getResponse());
+            $httpResponse->setEndPoint($endPoint);
+            return $httpResponse;
         }
     }
 

@@ -8,10 +8,22 @@ var App = function () {
 
         if (typeof(token) != 'undefined') {
             localStorage.setItem('token', token);
+            $("#app-connect").html('Disconnect');
         }
         if (typeof(companyId) != 'undefined') {
             localStorage.setItem('companyId', companyId);
         }
+
+    },
+
+    this.removeInfo= function(){
+        if (typeof(localStorage.getItem('token') != 'undefined')) {
+            localStorage.removeItem('token');
+        }
+        if (typeof(localStorage.getItem('companyId') != 'undefined')) {
+            localStorage.removeItem('companyId');
+        }
+        $("#app-connect").html('Connect');
     },
 
     this.getUrlParam = function (name) {
@@ -33,6 +45,9 @@ var App = function () {
                     $('#api-response-box').show();
                     $('#response-body > pre').html(JSON.stringify(result.body, null, 2));
                     $('#response-header > pre').html(JSON.stringify(result.header, null, 2));
+                    $('#response-endpoint > pre').html(result.endpont);
+                    $('#response-statuscode').html(result.statusCode);
+
                 }
             });
         }
@@ -75,6 +90,10 @@ var App = function () {
         $('#button-request-api').attr('data-end-point',endpoint);
         $('#api-response-box').hide();
     }
+
+    this.getConnectUrl = function() {
+        return appHost+'/connect';
+    }
 }
 
 var app = new App();
@@ -85,4 +104,12 @@ $(document).ready(function () {
     $("#button-request-api").click(function(){
         app.requestApiData($(this).attr('data-end-point'));
     });
+    $("#app-connect").click(function(){
+        if($(this).html() == 'Connect'){
+            window.location.href = app.getConnectUrl();
+        }else{
+            app.removeInfo();
+        }
+    });
+
 });
