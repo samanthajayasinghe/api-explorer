@@ -30,7 +30,7 @@ $app->get('/callback', function (Request $request, Response $response) use ($app
 
 $app->get('/endpoints', function (Request $request, Response $response) {
 
-    return $response->withJson($this->get('endpointService')->getEndPoints());
+    return $response->withJson($this->get('apiService')->getAllEndPoints());
 });
 
 $app->post('/read', function ($request, $response) {

@@ -40,8 +40,17 @@ class APIService
      *
      * @return \APIExplorer\Client\HTTPResponse
      */
-    public function executeHTTPRequest(HTTPRequest $request, $httpMethod ='get'){
+    public function executeHTTPRequest(HTTPRequest $request, $httpMethod = 'get')
+    {
         return $this->getApiAdapter()->executeHTTPRequest($request, $httpMethod);
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getAllEndPoints()
+    {
+        return $this->getApiAdapter()->getAllEndPoints();
     }
 
 }

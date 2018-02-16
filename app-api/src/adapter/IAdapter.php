@@ -34,4 +34,9 @@ interface IAdapter
      * @return mixed
      */
     public function getAccessToken($type, $params = array());
+
+    /**
+     * @return mixed
+     */
+    public function getAllEndPoints();
 }

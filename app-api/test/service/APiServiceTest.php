@@ -13,13 +13,23 @@ use \PHPUnit_Framework_TestCase;
 
 class APiServiceTest extends PHPUnit_Framework_TestCase
 {
-    public function testGetAuthorizationUrl() {
-        $apiService = new APIService();
-        $quickBookAdapter = new QuickBookAdapter();
 
+    /**
+     * @var APIService
+     */
+    private $apiService = null;
+
+    public function setUp()
+    {
+        $this->apiService = new APIService();
+        $quickBookAdapter = new QuickBookAdapter();
         $quickBookAdapter->setConfig($this->getConfig());
-        $apiService->setApiAdapter($quickBookAdapter);
-        $result  = $apiService->getApiAdapter()->getAuthorizationUrl();
+        $this->apiService->setApiAdapter($quickBookAdapter);
+    }
+
+    public function testGetAuthorizationUrl() {
+
+        $result  = $this->apiService->getApiAdapter()->getAuthorizationUrl();
         $this->assertContains('scope=com.intuit.quickbooks.accounting&response_type=code', $result);
     }
 
@@ -33,5 +43,12 @@ class APiServiceTest extends PHPUnit_Framework_TestCase
         $config->scopes = ['com.intuit.quickbooks.accounting'] ;
 
         return $config;
+    }
+
+    public function testGetAllEndPoints() {
+
+        $result = $this->apiService->getAllEndPoints();
+        $this->assertArrayHasKey('endpoint',$result[0]);
+        $this->assertArrayHasKey('name',$result[0]);
     }
 }

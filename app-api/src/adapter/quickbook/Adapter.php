@@ -8,6 +8,7 @@ use APIExplorer\Client\HTTPResponse;
 use APIExplorer\Client\IClient;
 use APIExplorer\Client\HTTPRequest;
 use \League\OAuth2\Client\Provider\GenericProvider;
+use \SQLite3;
 
 class Adapter implements IAdapter
 {
@@ -120,5 +121,19 @@ class Adapter implements IAdapter
         $request->setEndPoint($formatEndPoint);
 
         return $request;
+    }
+
+    /**
+     * @return array
+     */
+    public function getAllEndPoints(){
+        $endPoints = array();
+        $db = new SQLite3(__DIR__."/../../db/api");
+        $result = $db->query('SELECT * FROM end_point');
+
+        while($res = $result->fetchArray(SQLITE3_ASSOC)){
+            array_push($endPoints, $res);
+        }
+        return $endPoints;
     }
 }
