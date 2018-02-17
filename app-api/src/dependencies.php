@@ -5,7 +5,6 @@
  */
 
 use APIExplorer\Client\Client;
-use APIExplorer\Service\EndPointService;
 use APIExplorer\Service\APIService;
 use APIExplorer\Adapter\QuickBook\Adapter;
 
@@ -22,6 +21,4 @@ $apiService = new APIService();
 $apiService->setApiAdapter($quickBookApiAdapter);
 
 $container['apiService']  =  $apiService;
-
-$container['endpointService'] = new EndPointService();
 
