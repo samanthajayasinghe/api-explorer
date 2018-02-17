@@ -48,7 +48,14 @@ var App = function () {
                     $('#response-endpoint > pre').html(result.endpont);
                     $('#response-statuscode').html(result.statusCode);
 
-                }
+                },
+                beforeSend: function () {
+                    $("#loading").show();
+                    $('#api-response-box').hide();
+                },
+                complete : function () {
+                    $("#loading").hide();
+                },
             });
         }
     },
