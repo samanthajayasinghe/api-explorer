@@ -4,7 +4,7 @@
 
 API Explorer is a project that supports tocall the API via any interfaces. Currently, It supports to call it via the web interface and API-middleware supports to call it via mobile or micro-device.
 
-# How to set up
+## How to set up
 
 Rename app-api/src/config-dist.php as a app-api/src/config.php.
 
@@ -21,14 +21,14 @@ Create a Quick Book account and update following setting based on your applicati
 $config->clientId = '';//Your Id here
 $config->clientSecret = '';//Your client Secret here
 ```
-# API explorer middleware
+## API explorer middleware
 API explorer middleware is a scalable microservice application that facilitates following features with third-party apps.
 * Get Access token
 * Get all supported end points
 * Execute HTTP Request for HTTP methods (GET, POST, PUT, DELETE)
 
-# API Explorer Web Application
+## API Explorer Web Application
 API explorer web application is a single page application(SPA) which communicate with API middleware application. 
 
-# How Application supports to Quick Book API Explorer
+## How Application supports to Quick Book API Explorer
 Current implementation supports to quickbook API explorer for given client id and secret.
