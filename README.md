@@ -2,20 +2,20 @@
 
 [![Travis Test](https://img.shields.io/travis/samanthajayasinghe/cl-tech/master.svg)](https://travis-ci.org/samanthajayasinghe/cl-tech) [![codecov](https://codecov.io/gh/samanthajayasinghe/cl-tech/branch/master/graph/badge.svg)](https://codecov.io/gh/samanthajayasinghe/cl-tech)
 
-API Explorer is featured to call the third-party API's via any interface.. Currently, It supports to call it via the web interface and API-middleware supports to call it via mobile or micro-device.
+API Explorer is featured to call the third-party API's via any interface. Currently, the application supports only to be called via web interface and API-middleware can be called via mobile or micro-device.
 
 ## How to set up
 
 Rename app-api/src/config-dist.php as a app-api/src/config.php.
 
-Update following config setting based on your local path.
+Update following config setting according to your local path.
 
 ```
 $config->appAPIHost = '{http://your app api path}'; //point to app-api/public/index.php
 $config->appWebHost = '{http://your app web path}'; //point to app-web/index.html
 ```
 
-Create a Quick Book account and update following setting based on your application
+Create a Quick Book account and update following settings accordingly.
 
 ```
 $config->clientId = '';//Your Id here
