@@ -2,7 +2,7 @@
 
 [![Travis Test](https://img.shields.io/travis/samanthajayasinghe/cl-tech/master.svg)](https://travis-ci.org/samanthajayasinghe/cl-tech) [![codecov](https://codecov.io/gh/samanthajayasinghe/cl-tech/branch/master/graph/badge.svg)](https://codecov.io/gh/samanthajayasinghe/cl-tech)
 
-API Explorer is a project that supports tocall the API via any interfaces. Currently, It supports to call it via the web interface and API-middleware supports to call it via mobile or micro-device.
+API Explorer is featured to call the third-party API's via any interface.. Currently, It supports to call it via the web interface and API-middleware supports to call it via mobile or micro-device.
 
 ## How to set up
 
@@ -21,14 +21,14 @@ Create a Quick Book account and update following setting based on your applicati
 $config->clientId = '';//Your Id here
 $config->clientSecret = '';//Your client Secret here
 ```
-## API explorer middleware
-API explorer middleware is a scalable microservice application that facilitates following features with third-party apps.
-* Get Access token
-* Get all supported end points
-* Execute HTTP Request for HTTP methods (GET, POST, PUT, DELETE)
+## How it supports to Quick Book API Explorer
+API Explorer implements the Quick Book Adapter which supports to get the following information
+* Quick Book API access token
+* Execute HTTP Request for any HTTP method( Get, Post, Put, Delete ) 
+* Get all endpoints 
 
-## API Explorer Web Application
-API explorer web application is a single page application(SPA) which communicate with API middleware application. 
+## API Explorer Architecture 
+### Component Diagram
+The component diagram shows the interconnection of application layers.
+![component diagram](https://github.com/samanthajayasinghe/cl-tech/wiki/images/API-Explorer%20Componen.jpg)
 
-## How Application supports to Quick Book API Explorer
-Current implementation supports to quickbook API explorer for given client id and secret.
