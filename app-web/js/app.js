@@ -51,6 +51,7 @@ var App = function () {
                 },
                 beforeSend: function () {
                     $("#loading").show();
+                    $("#loading").focus();
                     $('#api-response-box').hide();
                 },
                 complete : function () {
@@ -66,7 +67,7 @@ var App = function () {
             success: function(result){
                 $.each(result, function(i, item) {
                     $('#side-navigation').append(
-                        '<li class="nav-item" data-endpoint="'+item.endpoint+'" data-id="'+item.id+'" data-params="'+item.params+'" id="menu-item-'+item.id+'">'+
+                        '<li class="nav-item" data-name="'+item.name+'" data-endpoint="'+item.endpoint+'" data-id="'+item.id+'" data-params="'+item.params+'" id="menu-item-'+item.id+'">'+
                         '<a class="nav-link active" href="javascript:app.showAPIForm('+item.id+')">'
                         +item.name+
                         '</a>'+
@@ -82,6 +83,7 @@ var App = function () {
         var endpoint = item.data('endpoint');
         $('#request-end-point').html(endpoint);
         $('#api-request-box-input').html('');
+        $('#request-name').html(item.data('name'));
         $.each(item.data('params').split(','), function(i, param) {
             var value = '';
             if(param == 'companyId'){
@@ -95,6 +97,7 @@ var App = function () {
             );
         });
         $('#button-request-api').attr('data-end-point',endpoint);
+        $('#api-request-box').focus();
         $('#api-response-box').hide();
     }
 
