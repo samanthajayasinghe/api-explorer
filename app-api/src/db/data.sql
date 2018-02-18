@@ -23,3 +23,16 @@ insert into end_point values
 (23,'Purchase','/company/:companyId/purchase/:entityId','companyId,entityId'),
 (24,'PurchaseOrder','/company/:companyId/purchaseorder/:entityId','companyId,entityId'),
 (25,'RefundReceipt','	/company/:companyId/refundreceipt/:entityId','companyId,entityId');
+
+insert into end_point values
+(26,'Reports','/company/:companyId/reports/:reportType','companyId,reportType'),
+(27,'SalesReceipt','/company/:companyId/salesreceipt','companyId'),
+(28,'TaxAgency','/company/:companyId/taxagency/:entityId','companyId,entityId'),
+(29,'TaxCode','/company/:companyId/taxcode/:entityId','companyId,entityId'),
+(30,'TaxRate','/company/:companyId/taxrate/:entityId','companyId,entityId'),
+(31,'Term','/company/:companyId/term/:entityId','companyId,entityId'),
+(32,'TimeActivity','/company/:companyId/timeactivity/:entityId','companyId,entityId'),
+(33,'Transfer','/company/:companyId/transfer/:entityId','companyId,entityId'),
+(34,'Vendor','/company/:companyId/vendor/:entityId','companyId,entityId'),
+(35,'VendorCredit','/company/:companyId/vendorcredit/:entityId','companyId,entityId');
+
