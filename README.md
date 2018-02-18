@@ -32,3 +32,5 @@ API Explorer implements the Quick Book Adapter which supports to get the followi
 The component diagram shows the interconnection of application layers.
 ![component diagram](https://github.com/samanthajayasinghe/cl-tech/wiki/images/API-Explorer%20Componen.jpg)
 
+More information available in https://github.com/samanthajayasinghe/cl-tech/wiki
+
