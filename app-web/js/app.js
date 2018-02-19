@@ -47,7 +47,14 @@ var App = function () {
                     $('#response-header > pre').html(JSON.stringify(result.header, null, 2));
                     $('#response-endpoint > pre').html(result.endpont);
                     $('#response-statuscode').html(result.statusCode);
-
+                    if(result.Error){
+                        $('#response-error > pre').html(JSON.stringify(result.Error, null, 2));
+                        $('#response-error').show();
+                        $('#response-error').prev().show();
+                    }else{
+                        $('#response-error').hide();
+                        $('#response-error').prev().hide();
+                    }
                 },
                 beforeSend: function () {
                     $("#loading").show();

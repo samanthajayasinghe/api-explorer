@@ -83,7 +83,9 @@ class Adapter implements IAdapter
     {
         $formatRequest = $this->formatHTTPRequest($request);
 
-        return $this->getHttpClient()->$httpMethod($formatRequest);
+        $response = $this->getHttpClient()->$httpMethod($formatRequest);
+
+        return $this->formatHTTPResponse($response);
     }
 
     /**
@@ -121,6 +123,19 @@ class Adapter implements IAdapter
         $request->setEndPoint($formatEndPoint);
 
         return $request;
+    }
+
+    /**
+     * @param HTTPResponse $response
+     *
+     * @return HTTPResponse
+     */
+    public function formatHTTPResponse(HTTPResponse $response) {
+        $body = $response->getResult();
+        if(isset($body['Fault']) && isset($body['Fault']['Error'])){
+            $response->setExtraData($body['Fault']);
+        }
+        return $response;
     }
 
     /**

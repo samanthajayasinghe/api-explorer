@@ -11,6 +11,7 @@ use GuzzleHttp\Psr7\Response as GuzzleResponse;
 
 class HTTPResponse
 {
+
     /**
      * @var HTTPRequest
      */
@@ -28,6 +29,11 @@ class HTTPResponse
      * @var string
      */
     private $endPoint = '';
+
+    /**
+     * @var array
+     */
+    private $extraData = array();
 
     /**
      * HTTPResponse constructor.
@@ -67,6 +73,22 @@ class HTTPResponse
     /**
      * @return array
      */
+    public function getExtraData()
+    {
+        return $this->extraData;
+    }
+
+    /**
+     * @param array $extraData
+     */
+    public function setExtraData($extraData)
+    {
+        $this->extraData = $extraData;
+    }
+
+    /**
+     * @return array
+     */
     public function getResult()
     {
         if (empty($this->result)) {
@@ -75,6 +97,7 @@ class HTTPResponse
             }
             $this->result = json_decode($this->getResponse()->getBody()->getContents(), true);
         }
+
         return $this->result;
     }
 
@@ -90,25 +113,29 @@ class HTTPResponse
      * Format headers
      * @return array
      */
-    public function getFormatHeader(){
+    public function getFormatHeader()
+    {
         $data = array();
         foreach ($this->getResponse()->getHeaders() as $name => $values) {
             $data[$name] = implode(', ', $values);
         }
+
         return $data;
     }
 
     /**
-     * Covert response to array
+     *
      * @return array
      */
-    public function toArray(){
+    public function toArray()
+    {
         $data = array();
         $data['body'] = $this->getResult();
         $data['statusCode'] = $this->getStatusCode();
         $data['header'] = $this->getFormatHeader();
         $data['endpont'] = $this->getEndPoint();
-        return $data;
+
+        return array_merge($this->getExtraData(), $data);
     }
 
 }
