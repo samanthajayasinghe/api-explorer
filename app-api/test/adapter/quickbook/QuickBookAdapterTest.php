@@ -4,6 +4,7 @@ namespace Tests\Adapter\QuickBook;
 
 use APIExplorer\Adapter\QuickBook\Adapter;
 use APIExplorer\Client\Client;
+use APIExplorer\Security\TokenHandler;
 use \PHPUnit_Framework_TestCase;
 use APIExplorer\Client\HTTPRequest;
 use GuzzleHttp\Psr7;
@@ -21,6 +22,7 @@ class QuickBookAdapterTest extends PHPUnit_Framework_TestCase
     {
         $this->quickBookAdapter = new Adapter();
         $this->quickBookAdapter->setConfig($this->getConfig());
+        $this->quickBookAdapter->setTokenHandler(new TokenHandler('1111','testiv'));
     }
 
     public function testFormatHTTPRequest()

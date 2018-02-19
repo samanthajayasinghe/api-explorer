@@ -25,7 +25,7 @@ $app->get('/callback', function (Request $request, Response $response) use ($app
         'code' => $_GET['code'],
     ]);
     $webPath = $this->get('apiService')->getApiAdapter()->getConfig()->appWebHost;
-    return $response->withHeader('Location', $webPath.'/?companyId=' . $_GET['realmId'] . '&token=' . $token->getToken());
+    return $response->withHeader('Location', $webPath.'/?companyId=' . $_GET['realmId'] . '&token=' . $token);
 });
 
 $app->get('/endpoints', function (Request $request, Response $response) {

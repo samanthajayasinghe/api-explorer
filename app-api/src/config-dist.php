@@ -16,6 +16,9 @@ $config->urlAuthorize = 'https://appcenter.intuit.com/connect/oauth2';
 $config->urlAccessToken = 'https://oauth.platform.intuit.com/oauth2/v1/tokens/bearer';
 $config->scopes = ['com.intuit.quickbooks.accounting'] ;
 
+$config->secretKey = 'This is my secret key';
+$config->secretIv = 'This is my secret iv';
+
 return [
     'settings' => [
         'displayErrorDetails' => true

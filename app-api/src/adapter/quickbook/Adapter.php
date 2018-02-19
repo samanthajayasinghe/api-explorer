@@ -7,6 +7,7 @@ use APIExplorer\Adapter\IAdapter;
 use APIExplorer\Client\HTTPResponse;
 use APIExplorer\Client\IClient;
 use APIExplorer\Client\HTTPRequest;
+use APIExplorer\Security\TokenHandler;
 use \League\OAuth2\Client\Provider\GenericProvider;
 use \SQLite3;
 
@@ -24,6 +25,11 @@ class Adapter implements IAdapter
      * @var IClient
      */
     public $httpClient = null;
+
+    /**
+     * @var TokenHandler
+     */
+    private $tokenHandler = null;
 
     /**
      * @return stdclass
@@ -55,6 +61,22 @@ class Adapter implements IAdapter
     public function setHttpClient(IClient $httpClient)
     {
         $this->httpClient = $httpClient;
+    }
+
+    /**
+     * @return TokenHandler
+     */
+    public function getTokenHandler()
+    {
+        return $this->tokenHandler;
+    }
+
+    /**
+     * @param TokenHandler $tokenHandler
+     */
+    public function setTokenHandler($tokenHandler)
+    {
+        $this->tokenHandler = $tokenHandler;
     }
 
     /**
@@ -100,11 +122,12 @@ class Adapter implements IAdapter
      * @param       $type
      * @param array $params
      *
-     * @return \League\OAuth2\Client\Token\AccessToken
+     * @return string
      */
     public function getAccessToken($type, $params = array())
     {
-        return $this->getAuthProvider()->getAccessToken($type, $params);
+        $accessToken = $this->getAuthProvider()->getAccessToken($type, $params);
+        return $this->getTokenHandler()->encrypt($accessToken->getToken());
     }
 
     /**
@@ -121,7 +144,7 @@ class Adapter implements IAdapter
         }
         $formatEndPoint = strtr($request->getEndPoint(), $params);
         $request->setEndPoint($formatEndPoint);
-
+        $request->setToken($this->getTokenHandler()->decrypt($request->getToken()));
         return $request;
     }
 
