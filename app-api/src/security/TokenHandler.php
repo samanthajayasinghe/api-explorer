@@ -58,6 +58,7 @@ class TokenHandler
     private function setSecretKey($secretKey)
     {
         $this->secretKey = hash('sha256', $secretKey);
+
         return $this;
     }
 
@@ -77,6 +78,7 @@ class TokenHandler
     public function setSecretIv($secretIv)
     {
         $this->secretIv = substr(hash('sha256', $secretIv), 0, 16);
+
         return $this;
     }
 
@@ -85,8 +87,10 @@ class TokenHandler
      *
      * @return string
      */
-    public function encrypt($string) {
+    public function encrypt($string)
+    {
         $output = openssl_encrypt($string, $this->encryptMethod, $this->getSecretKey(), 0, $this->getSecretIv());
+
         return base64_encode($output);
     }
 
@@ -95,7 +99,9 @@ class TokenHandler
      *
      * @return string
      */
-    public function decrypt($string) {
-        return openssl_decrypt(base64_decode($string), $this->encryptMethod, $this->getSecretKey(), 0, $this->getSecretIv());
+    public function decrypt($string)
+    {
+        return openssl_decrypt(base64_decode($string), $this->encryptMethod, $this->getSecretKey(), 0,
+            $this->getSecretIv());
     }
 }
