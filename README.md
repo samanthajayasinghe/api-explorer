@@ -1,6 +1,6 @@
 # API Explorer Application
 
-[![Travis Test](https://img.shields.io/travis/samanthajayasinghe/cl-tech/master.svg)](https://travis-ci.org/samanthajayasinghe/cl-tech) [![codecov](https://codecov.io/gh/samanthajayasinghe/cl-tech/branch/master/graph/badge.svg)](https://codecov.io/gh/samanthajayasinghe/cl-tech)
+[![Travis Test](https://img.shields.io/travis/samanthajayasinghe/api-explorer/master.svg)](https://travis-ci.org/samanthajayasinghe/api-explorer) [![codecov](https://codecov.io/gh/samanthajayasinghe/api-explorer/branch/master/graph/badge.svg)](https://codecov.io/gh/samanthajayasinghe/api-explorer)
 
 API Explorer is featured to call the third-party API's via any interface. Currently, the application supports only to be called via web interface and API-middleware can be called via mobile or micro-device.
 
@@ -30,7 +30,7 @@ API Explorer implements the Quick Book Adapter which supports to get the followi
 ## API Explorer Architecture 
 ### Component Diagram
 The component diagram shows the interconnection of application layers.
-![component diagram](https://github.com/samanthajayasinghe/cl-tech/wiki/images/API-Explorer%20Componen.jpg)
+![component diagram](https://github.com/samanthajayasinghe/api-explorer/wiki/images/API-Explorer%20Componen.jpg)
 
-More information available in https://github.com/samanthajayasinghe/cl-tech/wiki
+More information available in https://github.com/samanthajayasinghe/api-explorer/wiki
 
