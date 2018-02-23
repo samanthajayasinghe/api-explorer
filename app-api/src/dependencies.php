@@ -23,5 +23,4 @@ $quickBookApiAdapter->setTokenHandler($tokenHandler);
 $apiService = new APIService();
 $apiService->setApiAdapter($quickBookApiAdapter);
 
-$container['apiService']  =  $apiService;
-
+$container['apiService'] = $apiService;

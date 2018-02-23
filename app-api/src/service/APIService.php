@@ -52,5 +52,4 @@ class APIService
     {
         return $this->getApiAdapter()->getAllEndPoints();
     }
-
 }

@@ -22,7 +22,7 @@ class QuickBookAdapterTest extends PHPUnit_Framework_TestCase
     {
         $this->quickBookAdapter = new Adapter();
         $this->quickBookAdapter->setConfig($this->getConfig());
-        $this->quickBookAdapter->setTokenHandler(new TokenHandler('1111','testiv'));
+        $this->quickBookAdapter->setTokenHandler(new TokenHandler('1111', 'testiv'));
     }
 
     public function testFormatHTTPRequest()
@@ -35,7 +35,8 @@ class QuickBookAdapterTest extends PHPUnit_Framework_TestCase
         $this->assertEquals('/company/123456/entity/1', $formatHttpRequest->getEndPoint());
     }
 
-    public function testGetHttpClient() {
+    public function testGetHttpClient()
+    {
         $this->quickBookAdapter->setHttpClient(new Client('https://httpbin.org/'));
         $this->assertInstanceOf('APIExplorer\Client\Client', $this->quickBookAdapter->getHttpClient());
     }
@@ -48,32 +49,33 @@ class QuickBookAdapterTest extends PHPUnit_Framework_TestCase
 
     public function testExecuteHTTPRequest()
     {
-        $stream = Psr7\stream_for(json_encode(['id'=>1,'name'=>'samantha']));
+        $stream = Psr7\stream_for(json_encode(['id' => 1, 'name' => 'samantha']));
         $response = new Response(200, ['Content-Type' => 'application/json'], $stream);
 
         $adapterStub = $this->getMockBuilder('APIExplorer\Adapter\QuickBook\Adapter')
-                                ->getMock();
+            ->getMock();
         $adapterStub->method('executeHTTPRequest')
-                ->willReturn($response);
+            ->willReturn($response);
 
-        $result = $adapterStub->executeHTTPRequest(new HTTPRequest('/account',[]));
+        $result = $adapterStub->executeHTTPRequest(new HTTPRequest('/account', []));
         $this->assertEquals(200, $result->getStatusCode());
     }
 
     public function testExecuteHTTPRequestForInvalidHost()
     {
         $this->quickBookAdapter->setHttpClient(new Client('https://httpbin.org/'));
-        $result = $this->quickBookAdapter->executeHTTPRequest(new HTTPRequest('get',[]));
+        $result = $this->quickBookAdapter->executeHTTPRequest(new HTTPRequest('get', []));
         $this->assertEquals(404, $result->getStatusCode());
     }
+
     public function testGetAccessToken()
     {
         $adapterStub = $this->getMockBuilder('APIExplorer\Adapter\QuickBook\Adapter')
             ->getMock();
         $adapterStub->method('getAccessToken')
-            ->willReturn(['token'=>'asdg36158635dgad']);
+            ->willReturn(['token' => 'asdg36158635dgad']);
 
-        $token = $adapterStub->getAccessToken('authorization_code',[]);
+        $token = $adapterStub->getAccessToken('authorization_code', []);
 
         $this->assertEquals('asdg36158635dgad', $token['token']);
     }

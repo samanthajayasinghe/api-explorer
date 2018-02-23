@@ -19,6 +19,7 @@ before_script:
   - cd app-api
 script:
   - vendor/bin/phpunit --coverage-clover=coverage.xml
+  - vendor/bin/phpcs
 after_success:
     - bash <(curl -s https://codecov.io/bash)
 

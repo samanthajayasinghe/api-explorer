@@ -137,5 +137,4 @@ class HTTPResponse
 
         return array_merge($this->getExtraData(), $data);
     }
-
 }

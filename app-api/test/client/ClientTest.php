@@ -24,7 +24,8 @@ class ClientTest extends PHPUnit_Framework_TestCase
         $this->httpClient = new Client('https://httpbin.org/');
     }
 
-    public function testHTTPGetWithoutAuthorization() {
+    public function testHTTPGetWithoutAuthorization()
+    {
 
         $response = $this->httpClient->get(new HTTPRequest('get', array()));
         $this->assertEquals(200, $response->getStatusCode());
@@ -33,21 +34,24 @@ class ClientTest extends PHPUnit_Framework_TestCase
     /**
      * @expectedException     Exception
      */
-    public function testPost(){
+    public function testPost()
+    {
         $this->httpClient->post(new HTTPRequest('post', array()));
     }
 
     /**
      * @expectedException     Exception
      */
-    public function testPut(){
+    public function testPut()
+    {
         $this->httpClient->put(new HTTPRequest('put', array()));
     }
 
     /**
      * @expectedException     Exception
      */
-    public function testDelete(){
+    public function testDelete()
+    {
         $this->httpClient->delete(new HTTPRequest('delete', array()));
     }
 }

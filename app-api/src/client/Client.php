@@ -31,7 +31,7 @@ class Client implements IClient
     public function __construct($domain)
     {
         $this->setDomain($domain)
-             ->setHttpClient(new HttpClient(['base_uri' => $this->getDomain(), 'Content-Type' => 'application/json']));
+            ->setHttpClient(new HttpClient(['base_uri' => $this->getDomain(), 'Content-Type' => 'application/json']));
     }
 
     /**
@@ -74,7 +74,6 @@ class Client implements IClient
         return $this;
     }
 
-
     /**
      * @param HTTPRequest $request
      *
@@ -82,23 +81,25 @@ class Client implements IClient
      */
     public function get(HTTPRequest $request)
     {
-        try{
+        try {
             $request->setBasePath($this->getDomain());
             $data = [
                 'headers' => [
-                    'Accept' => 'application/json',
-                    'Authorization' => 'Bearer ' .$request->getToken()
-                ]
+                    'Accept'        => 'application/json',
+                    'Authorization' => 'Bearer ' . $request->getToken(),
+                ],
             ];
             $endPoint = $request->getFormatEndPoint();
             $response = $this->getHttpClient()
                 ->get($endPoint, $data);
             $httpResponse = new HTTPResponse($response);
             $httpResponse->setEndPoint($endPoint);
+
             return $httpResponse;
-        }catch(\Exception $e){
+        } catch (\Exception $e) {
             $httpResponse = new HTTPResponse($e->getResponse());
             $httpResponse->setEndPoint($endPoint);
+
             return $httpResponse;
         }
     }

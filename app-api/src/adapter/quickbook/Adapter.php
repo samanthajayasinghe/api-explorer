@@ -127,6 +127,7 @@ class Adapter implements IAdapter
     public function getAccessToken($type, $params = array())
     {
         $accessToken = $this->getAuthProvider()->getAccessToken($type, $params);
+
         return $this->getTokenHandler()->encrypt($accessToken->getToken());
     }
 
@@ -145,6 +146,7 @@ class Adapter implements IAdapter
         $formatEndPoint = strtr($request->getEndPoint(), $params);
         $request->setEndPoint($formatEndPoint);
         $request->setToken($this->getTokenHandler()->decrypt($request->getToken()));
+
         return $request;
     }
 
@@ -153,25 +155,29 @@ class Adapter implements IAdapter
      *
      * @return HTTPResponse
      */
-    public function formatHTTPResponse(HTTPResponse $response) {
+    public function formatHTTPResponse(HTTPResponse $response)
+    {
         $body = $response->getResult();
-        if(isset($body['Fault']) && isset($body['Fault']['Error'])){
+        if (isset($body['Fault']) && isset($body['Fault']['Error'])) {
             $response->setExtraData($body['Fault']);
         }
+
         return $response;
     }
 
     /**
      * @return array
      */
-    public function getAllEndPoints(){
+    public function getAllEndPoints()
+    {
         $endPoints = array();
-        $db = new SQLite3(__DIR__."/../../db/api");
+        $db = new SQLite3(__DIR__ . "/../../db/api");
         $result = $db->query('SELECT * FROM end_point');
 
-        while($res = $result->fetchArray(SQLITE3_ASSOC)){
+        while ($res = $result->fetchArray(SQLITE3_ASSOC)) {
             array_push($endPoints, $res);
         }
+
         return $endPoints;
     }
 }

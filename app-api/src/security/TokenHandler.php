@@ -101,7 +101,12 @@ class TokenHandler
      */
     public function decrypt($string)
     {
-        return openssl_decrypt(base64_decode($string), $this->encryptMethod, $this->getSecretKey(), 0,
-            $this->getSecretIv());
+        return openssl_decrypt(
+            base64_decode($string),
+            $this->encryptMethod,
+            $this->getSecretKey(),
+            0,
+            $this->getSecretIv()
+        );
     }
 }
