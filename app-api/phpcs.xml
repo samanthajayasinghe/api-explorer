@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
 <ruleset name="PHP_CodeSniffer">
-    <description>The coding standard for our project.</description>
+    <description>The coding standard API-explorer project.</description>
     <file>src</file>
     <file>test</file>
     <exclude-pattern>*/db/*</exclude-pattern>
