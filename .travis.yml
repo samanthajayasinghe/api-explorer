@@ -26,7 +26,8 @@ deploy:
   api_key:
     secure: UfjybsnW5UBfMkr3N+Z0dCNS0uHg8idp+m0plMbkvckPUt5x1fJdOte5HdiWt2wRsONFWEUzQy3OHEN15NaXxcvvcqZAZA4EYRkyIaGekpoFEWhVs0l/FV/0IxUen0ZBd9WLN40rNECUzQ9EsxzKKVn/5edp284e2DWhNi2AQzxc+JhkqqGvCt+8ebbAWSdQveJUirPPyo1hkWXrUSYrmZFjknsT5WPdSrU+RJ6tSp5xydXiIm27+cw8u4VV8PbH0S7f5awXhlRw40oyu0LorFEus4CYNQLXZFoKNUbPvQfZIfOlaRD2g5gyCq49nEU9Kat/KMWrkxj5VpXw2cK7Qw4MCZ802lTPClwiEZ5sEtN5qjrxMmNhnhXnochh3EIGhqHG720a25r04LDNZswekG9DLxGt2ln7T0XMFpJjTHdM5zVhmIChMSQwWO+1gTMbhA357kovPhMeiWxWtvHNNIhhtXX1tIQRsiun48XB+j6/K5wBDsM0WIe75bucKth6n8gGBRTvkYm9+Wl4FJKJJP1VAcn1P7ev+H3dbmDVwvJLXqhtc2KCG0n+p6ldKq9awZU/2WblpZgAFDAmasILf6/JxKR0XyMWizExg7wNCcKLhUQnQcqYDsGtA5oe69amqiuoc0sYm2VAyL79KECTKDEtVpao5CAi6x2HbQzaQYA=
   file: release
+  skip_cleanup: true
   on:
-    repo: samanthajayasinghe/api-explorer
+      tags: true
 notifications:
   email: false
