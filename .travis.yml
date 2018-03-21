@@ -1,27 +1,32 @@
 language: php
 php:
-  - '5.6'
-  - '7.0'
-  - '7.1'
-  - '7.2'
+- '5.6'
+- '7.0'
+- '7.1'
+- '7.2'
 sudo: required
 dist: trusty
 group: edge
-
 before_install:
-  - uname -a
-  - php --version
-  - phpunit --version
+- uname -a
+- php --version
+- phpunit --version
 install:
-  - composer install -d app-api
-  - composer dump-autoload -o -d app-api
+- composer install -d app-api
+- composer dump-autoload -o -d app-api
 before_script:
-  - cd app-api
+- cd app-api
 script:
-  - vendor/bin/phpunit --coverage-clover=coverage.xml
-  - vendor/bin/phpcs
+- vendor/bin/phpunit --coverage-clover=coverage.xml
+- vendor/bin/phpcs
 after_success:
-    - bash <(curl -s https://codecov.io/bash)
-
+- bash <(curl -s https://codecov.io/bash)
+deploy:
+  provider: releases
+  api_key:
+    secure: UfjybsnW5UBfMkr3N+Z0dCNS0uHg8idp+m0plMbkvckPUt5x1fJdOte5HdiWt2wRsONFWEUzQy3OHEN15NaXxcvvcqZAZA4EYRkyIaGekpoFEWhVs0l/FV/0IxUen0ZBd9WLN40rNECUzQ9EsxzKKVn/5edp284e2DWhNi2AQzxc+JhkqqGvCt+8ebbAWSdQveJUirPPyo1hkWXrUSYrmZFjknsT5WPdSrU+RJ6tSp5xydXiIm27+cw8u4VV8PbH0S7f5awXhlRw40oyu0LorFEus4CYNQLXZFoKNUbPvQfZIfOlaRD2g5gyCq49nEU9Kat/KMWrkxj5VpXw2cK7Qw4MCZ802lTPClwiEZ5sEtN5qjrxMmNhnhXnochh3EIGhqHG720a25r04LDNZswekG9DLxGt2ln7T0XMFpJjTHdM5zVhmIChMSQwWO+1gTMbhA357kovPhMeiWxWtvHNNIhhtXX1tIQRsiun48XB+j6/K5wBDsM0WIe75bucKth6n8gGBRTvkYm9+Wl4FJKJJP1VAcn1P7ev+H3dbmDVwvJLXqhtc2KCG0n+p6ldKq9awZU/2WblpZgAFDAmasILf6/JxKR0XyMWizExg7wNCcKLhUQnQcqYDsGtA5oe69amqiuoc0sYm2VAyL79KECTKDEtVpao5CAi6x2HbQzaQYA=
+  file: release
+  on:
+    repo: samanthajayasinghe/api-explorer
 notifications:
   email: false
